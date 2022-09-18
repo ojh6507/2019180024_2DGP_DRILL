@@ -1,5 +1,4 @@
 import turtle
-import random
 def restart():
     turtle.reset()
     

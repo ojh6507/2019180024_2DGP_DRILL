@@ -1,22 +1,25 @@
 import turtle
+
 def restart():
     turtle.reset()
-    
 def forward_move():
-    turtle.forward(50)
     turtle.stamp()
+    turtle.forward(50)
+def up_move():
+    turtle.setheading(90)
+    forward_move()    
 def right_move():
-    turtle.right(90)
+    turtle.setheading(0)
     forward_move()
 def left_move():
-    turtle.left(90)
+    turtle.setheading(180)
     forward_move()
 def back_move():
-    turtle.left(180)
+    turtle.setheading(-90)
     forward_move()
     
 turtle.shape("turtle")
-turtle.onkey(forward_move,'W')
+turtle.onkey(up_move,'W')
 turtle.onkey(left_move,'A')
 turtle.onkey(back_move,'S')
 turtle.onkey(right_move,'D')

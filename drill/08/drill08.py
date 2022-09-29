@@ -1,6 +1,6 @@
 from pico2d import *
 TUK_WIDTH, TUK_HEIGHT = 800, 800
-#TUK_WIDTH, TUK_HEIGHT = 1280, 1024
+#TUK_WIDTH, TUK_HEIGHT = 1280, 1024 #background size
 
 def handle_events():
     global running, x_dir, y_dir, action, time_delay

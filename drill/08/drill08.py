@@ -1,10 +1,11 @@
 from pico2d import *
 TUK_WIDTH, TUK_HEIGHT = 800, 800
 #TUK_WIDTH, TUK_HEIGHT = 1280, 1024 #background size
-
+LEFT = False
+RIGHT = False
 def handle_events():
     global running, x_dir, y_dir, action, time_delay
-
+    global LEFT,RIGHT
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
@@ -27,13 +28,30 @@ def handle_events():
             if event.key == SDLK_RIGHT:
                 x_dir += 1
                 action = 1
+                LEFT = False
+                RIGHT = True
             elif event.key == SDLK_LEFT:
                 x_dir -= 1
                 action = 0
+                LEFT = True
+                RIGHT = False
+          
             elif event.key == SDLK_UP:
                 y_dir += 1
+                if LEFT:
+                    action = 0
+                    
+                elif RIGHT:
+                    
+                    action = 1
             elif event.key == SDLK_DOWN:
                 y_dir -= 1
+                if LEFT:
+                    x_dir = 0
+                    action = 1
+                elif RIGHT:
+                    x_dir = 1
+                    action = 0
             elif event.key == SDLK_ESCAPE:
                 running = False
             time_delay = 0.02
@@ -79,7 +97,7 @@ while running:
         y += y_dir * 5
 
     if action == 0 or action == 1:
-        frame = (frame + x_dir) % 8
+        frame = (frame + 1) % 8
     else:
         frame = (frame + 1) % 8
 
